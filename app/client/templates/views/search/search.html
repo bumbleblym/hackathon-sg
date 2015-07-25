@@ -1,0 +1,14 @@
+<template name="search">
+  <div class="search row">
+    <div class="search-container col s6">
+    </div>
+    <div class="map-container col s6">
+      {{> googleMap name="searchMap" options=searchMapOptions}}
+    </div>
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a class="btn-floating btn-large red" id="new-location">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+  </div>
+</template>

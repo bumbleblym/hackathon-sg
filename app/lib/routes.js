@@ -2,7 +2,12 @@ Router.configure({
   layoutTemplate: 'layout'
 });
 
+Router.onBeforeAction(function() {
+  GoogleMaps.load();
+  this.next();
+}, { only: ['search', 'location'] });
+
 Router.route('/', {name: 'home'});
-Router.route('/listings', {name: 'listings'});
-Router.route('/listing/create', {name: 'createListing'});
-Router.route('/listing/:id', {name: 'listing'})
+Router.route('/search', {name: 'search'});
+Router.route('/location', {name: 'location'});
+Router.route('/profile', {name: 'profile'});

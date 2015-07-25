@@ -1,0 +1,12 @@
+<template name="location">
+  <div class="location">
+    <div class="map-container">
+      {{> googleMap name="locationMap" options=locationMapOptions}}
+    </div>
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a class="btn-floating btn-large red" id="new-location">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+  </div>
+</template>
