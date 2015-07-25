@@ -10,7 +10,9 @@ SimpleSchema.messages({
 Schemas.Point = new SimpleSchema({
   type: {
     type: String,
-    allowedValues: ['Point']
+    autoValue: function() {
+      return 'Point';
+    }
   },
   coordinates: {
     type: [Number],
