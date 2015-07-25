@@ -1,5 +1,10 @@
 <template name="navItems">
   <li><a href="{{ pathFor route='search' }}">Search</a></li>
   <li><a href="{{ pathFor route='location' }}">My Locations</a></li>
-  <li>{{> user}}</li>
+  {{#with currentUser.services.facebook}}
+    <li><a href="#!"><img src="{{profilePictureUrl id}}" />{{name}}</a></li>
+    <li><a class="logout">Logout</a></li>
+  {{else}}
+    <li><a class="waves-effect waves-light btn login"><i class="fa fa-facebook-official left"></i>Login with Facebook</a></li>
+  {{/with}}
 </template>
