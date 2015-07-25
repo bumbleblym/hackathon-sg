@@ -22,16 +22,18 @@ Template.location.helpers({
 
 Template.location.events({
   'click #marker-done': function(e) {
-    var marker = Template.instance().currentMarker;
-    console.log(marker.getPosition());
-    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-    Template.instance().infoWindow.close();
-    Template.instance().currentMarker = null;
-  },
+    var instance = Template.instance(),
+        position = instance.currentMarker.getPosition();
+    instance.infoWindow.close();
+    instance.currentMarker.setMap(null);
+    instance.currentMarker = null;
+    console.log(position.lng());
+    Meteor.users.update(Meteor.userId(), { $push: { locations: { coordinates: [position.lng(), position.lat()]}} });  },
   'click #marker-cancel': function(e) {
-    Template.instance().infoWindow.close();
-    Template.instance().currentMarker.setMap(null);
-    Template.instance().currentMarker = null;
+    var instance = Template.instance();
+    instance.infoWindow.close();
+    instance.currentMarker.setMap(null);
+    instance.currentMarker = null;
   }
 });
 
