@@ -35,9 +35,6 @@ Schemas.Point = new SimpleSchema({
 });
 
 Schemas.Product = new SimpleSchema({
-  isOffering: {
-    type: Boolean
-  },
   price: {
     type: Number,
     min: 0,
