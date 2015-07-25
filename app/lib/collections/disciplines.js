@@ -1,15 +1,20 @@
 Disciplines = new Mongo.Collection('disciplines');
 
 Schemas.Discipline = new SimpleSchema({
-  name: {
+  Name: {
     type: String,
     unique: true
   },
-  levels: {
-    type: [String],
+  Levels: {
+    type: String,
     label: 'Education levels',
     minCount: 1,
-    allowedValues: ['primary', 'secondary', 'post-secondary', 'tertiary', 'other']
+    allowedValues: ['primary', 'secondary', 'post-secondary', 'tertiary', 'other'],
+    autoform: {
+      FieldInput: {
+        firstOption: "(Select a State)"
+      }
+    }
   }
 });
 

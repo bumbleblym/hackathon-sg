@@ -11,3 +11,4 @@ Router.route('/', {name: 'home'});
 Router.route('/search', {name: 'search'});
 Router.route('/location', {name: 'location'});
 Router.route('/profile', {name: 'profile'});
+Router.route('/disciplines', {name: 'disciplines'});
