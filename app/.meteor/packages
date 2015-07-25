@@ -22,3 +22,5 @@ momentjs:moment
 msavin:mongol
 msavin:jetsetter
 service-configuration
+acemtp:algolia
+reactive-var

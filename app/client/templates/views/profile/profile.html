@@ -1,0 +1,28 @@
+<template name="profile">
+  <input type="text" name="q" id="q" autocomplete="off" spellcheck="false" autocorrect="false" class="form-control string" placeholder="Search..." />
+  {{#each results}}
+    <div class="results" data-id="{{objectID}}" data-name="{{name}}">
+      {{name}}
+    </div>
+  {{/each}}
+  {{#autoForm schema=proficiencySchema id='insertProficiencyForm'}}
+    <fieldset>
+      {{> afFieldInput name='disciplineId' type='hidden'}}
+      <label for="discipline-name" class="control-label">Proficiency</label>
+      <input type="text" id="discipline-name" placeholder="Search first..." disabled />
+      {{> afQuickField name='price'}}
+      {{> afQuickField name='level'}}
+      <p>
+        <input name="mode" type="radio" id="learn" checked />
+        <label for="learn">I am looking for teachers</label>
+      </p>
+      <p>
+        <input name="mode" type="radio" id="teach" />
+        <label for="teach">I am looking for students</label>
+      </p>
+    </fieldset>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons">send</i>
+    </button>
+  {{/autoForm}}
+</template>

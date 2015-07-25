@@ -1,4 +1,12 @@
 Schemas.User = new SimpleSchema({
+  proficiencies: {
+    type: [Schemas.Proficiency],
+    defaultValue: []
+  },
+  deficiencies: {
+    type: [Schemas.Proficiency],
+    defaultValue: []
+  },
   locations: {
     type: [Schemas.Point],
     defaultValue: []
