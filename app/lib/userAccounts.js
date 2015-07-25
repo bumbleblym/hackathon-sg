@@ -8,7 +8,6 @@ AccountsTemplates.configure({
 
 _.each([
   'changePwd',
-  'enrollAccount',
   'forgotPwd',
   'resetPwd',
   'signIn',
