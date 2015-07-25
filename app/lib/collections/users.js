@@ -3,6 +3,10 @@ Schemas.User = new SimpleSchema({
     type: [Schemas.Proficiency],
     defaultValue: []
   },
+  deficiencies: {
+    type: [Schemas.Proficiency],
+    defaultValue: []
+  },
   locations: {
     type: [Schemas.Point],
     defaultValue: []

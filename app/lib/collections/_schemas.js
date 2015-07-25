@@ -39,6 +39,7 @@ Schemas.Point = new SimpleSchema({
 Schemas.Proficiency = new SimpleSchema({
   price: {
     type: Number,
+    label: 'Hourly rate',
     min: 0,
     exclusiveMin: true,
     decimal: true
@@ -47,7 +48,7 @@ Schemas.Proficiency = new SimpleSchema({
     type: SimpleSchema.RegEx.Id,
     custom: function() {
       if (Disciplines.findOne(this.value) === undefined) {
-        return notFound;
+        return 'notFound';
       }
     }
   },
@@ -56,7 +57,7 @@ Schemas.Proficiency = new SimpleSchema({
     label: 'Education level',
     allowedValues: ['primary', 'secondary', 'tertiary', 'other'],
     custom: function() {
-      var discipline = Disciplines.findOne(this.field('disciplineId').value);
+      var discipline = Disciplines.findOne(this.siblingField('disciplineId').value);
 
       if (!_.contains(discipline.levels, this.value)) {
         return 'notAllowed';
