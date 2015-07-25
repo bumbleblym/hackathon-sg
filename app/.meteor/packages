@@ -19,8 +19,6 @@ materialize:materialize
 fortawesome:fontawesome
 dburles:google-maps
 momentjs:moment
-useraccounts:materialize
 msavin:mongol
 msavin:jetsetter
 service-configuration
-accounts-ui-unstyled
