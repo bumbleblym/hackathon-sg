@@ -15,8 +15,3 @@ Template.navItems.events({
   }
 });
 
-Template.navItems.helpers({
-  profilePictureUrl: function(id) {
-    return 'http://graph.facebook.com/' + id + '/picture/?type=square';
-  }
-});

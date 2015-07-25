@@ -1,14 +1,31 @@
 <template name="layout">
   <div class="navbar-fixed">
+    <ul id="dropdown1" class="dropdown-content">
+      {{> dropdownItems}}
+    </ul>
     <nav>
       <div class="nav-wrapper">
         <a href="{{ pathFor route='home' }}" class="brand-logo">Tuitui</a>
         <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           {{> navItems}}
+          {{#with currentUser.services.facebook }}
+            {{> dropdown}}
+          {{else}}
+            <li><a class="waves-effect waves-light btn login"><i class="fa fa-facebook-official left"></i>Login with Facebook</a></li>
+          {{/with}}
         </ul>
         <ul class="side-nav" id="mobile-nav">
           {{> navItems}}
+          {{#with currentUser.services.facebook }}
+            <li class="user valign-wrapper">
+              <img class="responsive-img circle valign" src="{{profilePictureUrl id}}">
+              <a href="#!">{{name}}</a>
+            </li>
+            {{> dropdownItems}}
+          {{else}}
+            <li><a class="waves-effect waves-light btn login"><i class="fa fa-facebook-official left"></i>Login with Facebook</a></li>
+          {{/with}}
         </ul>
       </div>
     </nav>
