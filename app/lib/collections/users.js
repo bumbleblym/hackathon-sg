@@ -3,23 +3,19 @@ Schema = {};
 Schema.UserProfile = new SimpleSchema({
     firstName: {
         type: String,
-        regEx: /^[a-zA-Z-]{2,25}$/,
-        optional: false
+        regEx: /^[a-zA-Z-]{2,25}$/
     },
     lastName: {
         type: String,
-        regEx: /^[a-zA-Z]{2,25}$/,
-        optional: false
+        regEx: /^[a-zA-Z]{2,25}$/
     },
     birthday: {
-        type: Date,
-        optional: false
+        type: Date
     },
     gender: {
         type: String,
-        allowedValues: ['Male', 'Female'],
-        optional: true
-    }, 
+        allowedValues: ['Male', 'Female']
+    }
 });
 
 Schema.User = new SimpleSchema({
@@ -51,13 +47,16 @@ Schema.User = new SimpleSchema({
         optional: true
     },
     teachingSubjects: {
-        type: Object,
+        type: String,
         optional: true,
         blackbox: true
     },
     pricePerHour: {
         type: Number,
         optional: false
+    },
+    age: {
+        type : Number
     }
 });
 
