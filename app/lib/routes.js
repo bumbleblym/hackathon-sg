@@ -3,7 +3,9 @@ Router.configure({
 });
 
 Router.onBeforeAction(function() {
-  GoogleMaps.load();
+  GoogleMaps.load({
+    libraries: 'geometry,places'
+  });
   this.next();
 }, { only: ['search', 'location'] });
 
