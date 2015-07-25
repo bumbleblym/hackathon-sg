@@ -48,8 +48,11 @@ AutoForm.hooks({
     onSubmit: function(doc) {
       var $push = {};
       var type;
-      if ($('#teach').is(':checked')) {
+      var teach = $('#teach');
+      var check = false;
+      if (teach.is(':checked')) {
         type = 'proficiencies';
+        check = true;
       } else {
         type = 'deficiencies';
       }
@@ -60,6 +63,12 @@ AutoForm.hooks({
       });
 
       this.done();
+
+      if (check === true) {
+        teach.prop('checked' , true);
+      } else {
+        $('#learn').prop('checked' , true);
+      }
 
       return false;
     }
