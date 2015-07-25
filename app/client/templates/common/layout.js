@@ -1,3 +1,3 @@
 Template.layout.onRendered(function() {
-  $('.button-collapse').sideNav();
+  this.$('.button-collapse').sideNav();
 });
