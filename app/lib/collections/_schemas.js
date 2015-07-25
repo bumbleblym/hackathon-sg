@@ -54,7 +54,7 @@ Schemas.Product = new SimpleSchema({
   level: {
     type: String,
     label: 'Education level',
-    allowedValues: ['primary', 'secondary', 'post-secondary', 'tertiary', 'other'],
+    allowedValues: ['primary', 'secondary', 'tertiary', 'other'],
     custom: function() {
       var discipline = Disciplines.findOne(this.field('disciplineId').value);
 
