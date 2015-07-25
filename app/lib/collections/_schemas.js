@@ -1,9 +1,9 @@
 Schemas = {};
 
 SimpleSchema.messages({
-  pointSchema: '[label] should be [longitude, latitude]',
-  lonOutOfRange: '[label] longitude should be between -90 and 90',
-  latOutOfRange: '[label] latitude should be between -180 and 180'
+  pointSchema: '[value] should be [longitude, latitude]',
+  lonOutOfRange: '[value] longitude should be between -90 and 90',
+  latOutOfRange: '[value] latitude should be between -180 and 180'
 });
 
 Schemas.Point = new SimpleSchema({
