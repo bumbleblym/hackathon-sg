@@ -27,8 +27,15 @@ Template.location.events({
     instance.infoWindow.close();
     instance.currentMarker.setMap(null);
     instance.currentMarker = null;
-    console.log(position.lng());
-    Meteor.users.update(Meteor.userId(), { $push: { locations: { coordinates: [position.lng(), position.lat()]}} });  },
+
+    Meteor.users.update(Meteor.userId(), { 
+      $push: { 
+        locations: { 
+          coordinates: [position.lng(), position.lat()]
+        }
+      }
+    });  
+  },
   'click #marker-cancel': function(e) {
     var instance = Template.instance();
     instance.infoWindow.close();
@@ -39,6 +46,7 @@ Template.location.events({
 
 Template.location.onCreated(function() {
   var self = this;
+
   GoogleMaps.ready('locationMap', function(locationMap) {
 
     var map = locationMap.instance,
@@ -128,5 +136,41 @@ Template.location.onCreated(function() {
       self.currentMarker.setMap(null);
       self.currentMarker = null;
     });
+  });
+});
+
+Template.location.onRendered(function() {
+  var allMarkers = [];
+
+  this.autorun(function() {
+    if (GoogleMaps.loaded()) {
+      var map = GoogleMaps.maps.locationMap.instance,
+          addLocations = function(locations) {
+            for (var i = 0, location; location = locations[i]; i++) {
+              var coordinates = location.coordinates;
+              // Create a marker for each place.
+              var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(coordinates[1], coordinates[0]),
+                map: map,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+              });
+
+              allMarkers.push(marker);
+            }
+          };
+
+      Meteor.users.find(Meteor.userId()).observe({
+        added: function(user) {
+          addLocations(user.locations);
+        },
+        changed: function(user, _) {
+          for (var i = 0, marker; marker = allMarkers[i]; i++) {
+            marker.setMap(null);
+          }
+
+          addLocations(user.locations);
+        }
+      });
+    }
   });
 });
