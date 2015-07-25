@@ -3,8 +3,8 @@ Schemas = {};
 SimpleSchema.messages({
   notFound: '[value] [label] cannot be found',
   pointSchema: '[value] should be [longitude, latitude]',
-  lonOutOfRange: '[value] longitude should be between -90 and 90',
-  latOutOfRange: '[value] latitude should be between -180 and 180'
+  lonOutOfRange: '[value] longitude should be between -180 and 180',
+  latOutOfRange: '[value] latitude should be between -90 and 90'
 });
 
 Schemas.Point = new SimpleSchema({
@@ -24,12 +24,12 @@ Schemas.Point = new SimpleSchema({
       }
 
       var lon = lonLat[0];
-      if (lon < 90 || lon > 90) {
+      if (lon < -180 || lon > 180) {
         return 'lonOutOfRange';
       }
 
       var lat = lonLat[1];
-      if (lat < 180 || lat > 180) {
+      if (lat < -90 || lat > 90) {
         return 'latOutOfRange';
       }
     }
