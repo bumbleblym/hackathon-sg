@@ -36,7 +36,7 @@ Schemas.Point = new SimpleSchema({
   }
 });
 
-Schemas.Product = new SimpleSchema({
+Schemas.Proficiency = new SimpleSchema({
   price: {
     type: Number,
     min: 0,
