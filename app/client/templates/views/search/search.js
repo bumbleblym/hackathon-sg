@@ -1,5 +1,5 @@
-Template.listings.helpers({
-  listingsMapOptions: function() {
+Template.search.helpers({
+  searchMapOptions: function() {
 
     // Make sure the maps API has loaded
     if (GoogleMaps.loaded()) {
@@ -12,17 +12,23 @@ Template.listings.helpers({
   }
 });
 
-Template.listings.onRendered(function() {
+Template.search.onRendered(function() {
   function showPosition(position) {
     console.log("lat: " + position.coords.latitude + ", lng: " + position.coords.longitude);
 
     if (GoogleMaps.loaded()) {
-      var map = GoogleMaps.maps.listingsMap.instance
+      var map = GoogleMaps.maps.searchMap.instance;
       map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
     }
-  }
+  } 
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
+  }
+});
+
+Template.search.events({
+  'click #new-location': function(e) {
+
   }
 });
