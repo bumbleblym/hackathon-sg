@@ -1,0 +1,25 @@
+<template name="layout">
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="{{pathFor route='home'}}" class="brand-logo">Tuitui</a>
+        <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-bars"></i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="">Listings</a></li>
+          <li><a href="">New listing</a></li>
+          <li><a href="">Logout</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-nav">
+          <li><a href="">Listings</a></li>
+          <li><a href="">New listing</a></li>
+          <li><a href="">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div id="main">
+        {{> yield}}
+      </div>
+    </div>
+  </div>
+</template>

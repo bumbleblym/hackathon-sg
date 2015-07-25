@@ -15,6 +15,7 @@ aldeed:autoform
 dburles:collection-helpers
 matb33:collection-hooks
 iron:router
+less
 materialize:materialize
 fortawesome:fontawesome
 dburles:google-maps
