@@ -9,7 +9,7 @@ Schemas.Discipline = new SimpleSchema({
     type: [String],
     label: 'Education levels',
     minCount: 1,
-    allowedValues: ['primary', 'secondary', 'post-secondary', 'tertiary', 'other']
+    allowedValues: ['primary', 'secondary', 'tertiary', 'other']
   }
 });
 
