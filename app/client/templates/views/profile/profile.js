@@ -77,6 +77,7 @@ AutoForm.hooks({
         $('#learn').prop('checked' , true);
       }
 
+      $('#modal').closeModal();
       return false;
     }
   }
