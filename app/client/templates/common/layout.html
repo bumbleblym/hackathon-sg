@@ -3,16 +3,20 @@
     <ul id="dropdown1" class="dropdown-content">
       {{> dropdownItems}}
     </ul>
-    <nav>
+    <nav class="teal">
       <div class="nav-wrapper">
-        <a href="{{ pathFor route='home' }}" class="brand-logo">Tuitui</a>
+        <a href="{{ pathFor route='home' }}" class="brand-logo">TuiTui</a>
         <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           {{> navItems}}
           {{#with currentUser.services.facebook }}
             {{> dropdown}}
           {{else}}
-            <li><a class="waves-effect waves-light btn login"><i class="fa fa-facebook-official left"></i>Login with Facebook</a></li>
+            {{#if loggingIn}}
+              <li>Logging in...</li>
+            {{else}}
+              <li><a class="waves-effect waves-light btn login"><i class="fa fa-facebook-official left"></i>Login with Facebook</a></li>
+            {{/if}}
           {{/with}}
         </ul>
         <ul class="side-nav" id="mobile-nav">
@@ -20,11 +24,15 @@
           {{#with currentUser.services.facebook }}
             <li class="user valign-wrapper">
               <img class="responsive-img circle valign" src="{{profilePictureUrl id}}">
-              <a href="#!">{{name}}</a>
+              <a href="{{pathFor route='profile'}}">{{name}}</a>
             </li>
             {{> dropdownItems}}
           {{else}}
-            <li><a class="waves-effect waves-light btn login"><i class="fa fa-facebook-official left"></i>Login with Facebook</a></li>
+            {{#if loggingIn}}
+              <li>Logging in...</li>
+            {{else}}
+              <li><a class="waves-effect waves-light btn login"><i class="fa fa-facebook-official left"></i>Login with Facebook</a></li>
+            {{/if}}
           {{/with}}
         </ul>
       </div>

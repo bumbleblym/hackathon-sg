@@ -1,4 +1,4 @@
-Template.navItems.events({
+Template.dropdownItems.events({
   'click a.logout': function(event) {
     Meteor.logout(function(err) {
       if (err) {

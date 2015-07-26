@@ -1,10 +1,12 @@
 Schemas.User = new SimpleSchema({
   proficiencies: {
     type: [Schemas.Proficiency],
+    blackbox: true,
     defaultValue: []
   },
   deficiencies: {
     type: [Schemas.Proficiency],
+    blackbox: true,
     defaultValue: []
   },
   locations: {
