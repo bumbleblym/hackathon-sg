@@ -7,6 +7,14 @@ Template.personCard.helpers({
   }
 });
 
+Template.personCard.events({
+  'click li.person-card': function(e) {
+    var id = e.target.dataset.id;
+
+    Session.set('selectedId', id);
+  }
+});
+
 Template.personCard.rendered = function() {
-  $('.collapsible').collapsible();
+  $('.collapsible').collapsible({ accordion: true });
 };

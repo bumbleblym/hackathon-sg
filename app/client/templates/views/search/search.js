@@ -20,10 +20,12 @@ Template.search.helpers({
 
 Template.search.onRendered(function() {
   this.$('.collapsible').collapsible({
-    accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
   });
 
   var markers = {};
+  var defaultIcon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+  var selectedIcon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
 
   this.autorun(function() {
     if (GoogleMaps.loaded()) {
@@ -38,7 +40,7 @@ Template.search.onRendered(function() {
             var marker = new google.maps.Marker({
               position: new google.maps.LatLng(coordinates[1], coordinates[0]),
               map: map,
-              icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+              icon: defaultIcon
             });
             userMarkers.push(marker);
           });
@@ -51,6 +53,34 @@ Template.search.onRendered(function() {
           this.added(newDoc);
         }
       });
+    }
+  });
+
+  this.autorun(function() {
+    if (GoogleMaps.loaded()) {
+      var selectedId = Session.get('selectedId');
+
+      if (!!selectedId) {
+        _.each(_.keys(markers), function(key) {
+          var val = markers[key];
+
+          if (key === selectedId) {
+            _.each(val, function(marker) {
+              if (marker.icon === selectedIcon) {
+                marker.setIcon(defaultIcon);
+              } else {
+                marker.setIcon(selectedIcon);
+              }
+            });
+          } else {
+            _.each(val, function(marker) {
+              marker.setIcon(defaultIcon);
+            });
+          }
+        });
+      }
+
+      Session.set('selectedId', null);
     }
   });
 });
