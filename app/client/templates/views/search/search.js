@@ -19,20 +19,38 @@ Template.search.helpers({
 });
 
 Template.search.onRendered(function() {
-  function showPosition(position) {
-    console.log("lat: " + position.coords.latitude + ", lng: " + position.coords.longitude);
-
-    if (GoogleMaps.loaded()) {
-      var map = GoogleMaps.maps.searchMap.instance;
-      map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-    }
-  } 
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  }
-
   this.$('.collapsible').collapsible({
     accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+  });
+
+  var markers = {};
+
+  this.autorun(function() {
+    if (GoogleMaps.loaded()) {
+      var map = GoogleMaps.maps.searchMap.instance;
+
+      Meteor.users.find({}).observe({
+        added: function(doc) {
+          var userId = doc._id;
+          var userMarkers = markers[userId] =  [];
+          _.each(doc.locations, function(location) {
+            var coordinates = location.coordinates;
+            var marker = new google.maps.Marker({
+              position: new google.maps.LatLng(coordinates[1], coordinates[0]),
+              map: map,
+              icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+            });
+            userMarkers.push(marker);
+          });
+        },
+        changed: function(newDoc, oldDoc) {
+          var userId = newDoc._id;
+          _.each(markers[userId], function(marker) {
+            marker.setMap(null);
+          });
+          this.added(newDoc);
+        }
+      });
+    }
   });
 });
