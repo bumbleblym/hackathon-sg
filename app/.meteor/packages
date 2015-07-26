@@ -24,3 +24,4 @@ msavin:jetsetter
 service-configuration
 acemtp:algolia
 reactive-var
+http
