@@ -8,8 +8,8 @@ Template.personCard.helpers({
 });
 
 Template.personCard.events({
-  'click li.person-card': function(e) {
-    var id = e.target.dataset.id;
+  'click div.collapsible-header, click span.tag': function(e) {
+    var id = $(e.target).closest('li.person-card').data('id');
 
     Session.set('selectedId', id);
   }
