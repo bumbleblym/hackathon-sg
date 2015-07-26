@@ -1,6 +1,11 @@
 <template name="search">
   <div class="search row">
     <div class="search-container col s6">
+      <ul class="collapsible popout" data-collapsible="accordion">
+        {{#each people}}
+          {{> personCard}}
+        {{/each}}
+      </ul>
     </div>
     <div class="map-container col s6">
       {{> googleMap name="searchMap" options=searchMapOptions}}

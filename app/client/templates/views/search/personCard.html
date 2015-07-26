@@ -1,0 +1,73 @@
+<template name="personCard">
+  <li class="person-card">
+    <div class="collapsible-header">
+      <img class="responsive-img circle" src="{{profilePictureUrl services.facebook.id}}">
+      <div class="person-info">
+        <h5 class="name">{{profile.name}}</h5>
+        {{#if proficiencies.length}}
+          <div class="proficiencies>">
+            <span>Offering: </span>
+            {{#each proficiencies}}
+              <span class="tag">{{getDisciplineName disciplineId}}</span>
+            {{/each}}
+          </div>
+        {{/if}}
+        {{#if deficiencies.length}}
+          <div class="deficiencies>">
+            <span>Seeking: </span>
+            {{#each deficiencies}}
+              <span class="tag">{{getDisciplineName disciplineId}}</span>
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+    <div class="collapsible-body">
+      <div class="section">
+        <h5>Offering:</h5>
+        <table>
+          <thead>
+            <tr>
+                <th data-field="">Discipline</th>
+                <th data-field="">Level</th>
+                <th data-field="">Hourly rate</th>
+            </tr>
+          </thead>
+
+          <tbody>
+           {{#each proficiencies}}
+            <tr>
+              <td>{{getDisciplineName disciplineId}}</td>
+              <td>{{level}}</td>
+              <td>{{price}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Seeking:</h5>
+        <table>
+          <thead>
+            <tr>
+                <th data-field="">Discipline</th>
+                <th data-field="">Level</th>
+                <th data-field="">Hourly rate</th>
+            </tr>
+          </thead>
+
+          <tbody>
+           {{#each deficiencies}}
+            <tr>
+              <td>{{getDisciplineName disciplineId}}</td>
+              <td>{{level}}</td>
+              <td>{{price}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </li>
+</template>

@@ -9,6 +9,12 @@ Template.search.helpers({
         zoom: 14
       };
     }
+  },
+  profilePictureUrl: function(id) {
+    return 'http://graph.facebook.com/' + id + '/picture/?type=square';
+  },
+  people: function() {
+    return Meteor.users.find({});
   }
 });
 
@@ -25,10 +31,8 @@ Template.search.onRendered(function() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
-});
 
-Template.search.events({
-  'click #new-location': function(e) {
-
-  }
+  this.$('.collapsible').collapsible({
+    accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+  });
 });
