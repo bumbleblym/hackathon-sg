@@ -11,7 +11,8 @@ Template.layout.events({
 Template.layout.helpers({
   profilePictureUrl: function(id) {
     return 'http://graph.facebook.com/' + id + '/picture/?type=square';
-  }
+  },
+  loggingIn: Meteor.loggingIn
 });
 
 Template.layout.onRendered(function() {
