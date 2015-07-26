@@ -20,7 +20,7 @@
           {{#with currentUser.services.facebook }}
             <li class="user valign-wrapper">
               <img class="responsive-img circle valign" src="{{profilePictureUrl id}}">
-              <a href="#!">{{name}}</a>
+              <a href="{{pathFor route='profile'}}">{{name}}</a>
             </li>
             {{> dropdownItems}}
           {{else}}
