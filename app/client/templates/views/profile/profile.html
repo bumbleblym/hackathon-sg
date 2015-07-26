@@ -1,28 +1,100 @@
 <template name="profile">
-  <input type="text" name="q" id="q" autocomplete="off" spellcheck="false" autocorrect="false" class="form-control string" placeholder="Search..." />
-  {{#each results}}
-    <div class="results" data-id="{{objectID}}" data-name="{{name}}">
-      {{name}}
+  <div class="profile">
+    <div class="row">
+      <div class="col s4">
+        <div class="card teal">
+          <div class="card-content white-text">
+            <label>Add new discipline:</label>
+            <input type="text" name="q" id="q" autocomplete="off" spellcheck="false" autocorrect="false" class="form-control string" placeholder="Search..." />
+          </div>
+        </div>
+        <div class="results">
+          {{#each results}}
+            <div class="result" data-id="{{objectID}}" data-name="{{name}}">
+              {{name}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="col s8">
+        <div class="section">
+          <h5>Offering:</h5>
+          <table>
+            <thead>
+              <tr>
+                  <th data-field="">Discipline</th>
+                  <th data-field="">Level</th>
+                  <th data-field="">Hourly rate</th>
+              </tr>
+            </thead>
+
+            <tbody>
+             {{#each user.proficiencies}}
+              <tr>
+                <td>{{getDisciplineName disciplineId}}</td>
+                <td>{{level}}</td>
+                <td>{{price}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <h5>Seeking:</h5>
+          <table>
+            <thead>
+              <tr>
+                  <th data-field="">Discipline</th>
+                  <th data-field="">Level</th>
+                  <th data-field="">Hourly rate</th>
+              </tr>
+            </thead>
+
+            <tbody>
+             {{#each user.deficiencies}}
+              <tr>
+                <td>{{getDisciplineName disciplineId}}</td>
+                <td>{{level}}</td>
+                <td>{{price}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="modal" class="modal">
+        {{#autoForm schema=proficiencySchema id='insertProficiencyForm'}}
+          <div class="modal-content">
+            <fieldset>
+              {{> afFieldInput name='disciplineId' type='hidden'}}
+              <label for="discipline-name" class="control-label">Proficiency</label>
+              <input type="text" id="discipline-name" placeholder="Search first..." disabled />
+              {{> afQuickField name='price'}}
+              {{> afQuickField name='level'}}
+              <p>
+                <input name="mode" type="radio" id="learn" checked />
+                <label for="learn">I am looking for teachers</label>
+              </p>
+              <p>
+                <input name="mode" type="radio" id="teach" />
+                <label for="teach">I am looking for students</label>
+              </p>
+            </fieldset>
+          </div>
+          <div class="modal-footer">
+            <button class="waves-effect waves-light btn" type="submit" name="action">Submit
+              <i class="material-icons">send</i>
+            </button>
+            <a class=" modal-action modal-close waves-effect btn grey">Cancel
+              <i class="material-icons">cancel</i>
+            </a>
+          </div>
+        {{/autoForm}}
+      </div>
+
+
     </div>
-  {{/each}}
-  {{#autoForm schema=proficiencySchema id='insertProficiencyForm'}}
-    <fieldset>
-      {{> afFieldInput name='disciplineId' type='hidden'}}
-      <label for="discipline-name" class="control-label">Proficiency</label>
-      <input type="text" id="discipline-name" placeholder="Search first..." disabled />
-      {{> afQuickField name='price'}}
-      {{> afQuickField name='level'}}
-      <p>
-        <input name="mode" type="radio" id="learn" checked />
-        <label for="learn">I am looking for teachers</label>
-      </p>
-      <p>
-        <input name="mode" type="radio" id="teach" />
-        <label for="teach">I am looking for students</label>
-      </p>
-    </fieldset>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-      <i class="material-icons">send</i>
-    </button>
-  {{/autoForm}}
+  </div>
 </template>

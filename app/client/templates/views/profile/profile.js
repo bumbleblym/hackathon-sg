@@ -2,11 +2,12 @@ Template.profile.events({
   'keyup #q': function(e) {
     Session.set('q', e.target.value);
   },
-  'click div.results': function(event) {
+  'click div.result': function(event) {
     var dataset = event.target.dataset;
 
     $('input[name="disciplineId"]').val(dataset.id);
     $('#discipline-name').val(dataset.name);
+    $('#modal').openModal();
   }
 });
 
@@ -16,6 +17,12 @@ Template.profile.helpers({
   },
   results: function() {
     return Template.instance().results.get();
+  },
+  user: function() {
+    return Meteor.user();
+  },
+  getDisciplineName: function(id) {
+    return Disciplines.findOne(id).name;
   }
 });
 
